@@ -146,7 +146,7 @@ export const projects: Project[] = [
     title: "Este portfólio",
     shortTitle: "Este portfólio",
     status: "em-desenvolvimento",
-    badge: "Em produção",
+    badge: "Em desenvolvimento",
     tagline: "Construído do zero, aberto no GitHub. Você está assistindo agora.",
     meta: ["2026", "Next.js", "Framer Motion"],
     cover: acpbImg("02-celular.jpg"),

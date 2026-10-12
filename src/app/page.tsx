@@ -39,7 +39,7 @@ export default function Home() {
 
         <About />
 
-        <Row id="em-producao" title="Em produção" subtitle="O que estou construindo agora.">
+        <Row id="em-desenvolvimento" title="Em desenvolvimento" subtitle="O que estou construindo agora.">
           {inProgress.map((p, i) => (
             <PosterCard
               key={p.slug}
