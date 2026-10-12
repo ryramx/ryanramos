@@ -129,6 +129,19 @@ export const projects: Project[] = [
     links: [],
   },
   {
+    slug: "patotinha",
+    title: "Sistema de Pedidos da Patotinha da Vovó",
+    shortTitle: "Patotinha da Vovó",
+    status: "em-desenvolvimento",
+    badge: "Em desenvolvimento",
+    tagline:
+      "Um sistema de balcão para a lanchonete: registra cada pedido, calcula o total sozinho, guarda a forma de pagamento e mostra o histórico e o resumo das vendas.",
+    meta: ["2026", "Em desenvolvimento", "Web"],
+    cover: "/projetos/patotinha/capa.jpg",
+    techDetails:
+      "API REST em Node.js com Fastify e Prisma; telas em React, Vite, Tailwind CSS e TanStack Query; esquemas Zod compartilhados entre tela e API. Banco PostgreSQL 16 com CHECKs e gatilhos, total do pedido calculado no servidor e login com JWT. Testes unitários e de integração contra PostgreSQL real, ponta a ponta com Playwright e CI no GitHub Actions com lint, checagem de tipos e npm audit. Roda com Docker Compose.",
+  },
+  {
     slug: "portfolio",
     title: "Este portfólio",
     shortTitle: "Este portfólio",
@@ -222,7 +235,7 @@ export const workflow = [
 export const stack: StackGroup[] = [
   { title: "O que você vê na tela", items: ["React", "TypeScript", "Tailwind CSS", "Angular"] },
   { title: "O que roda por trás", items: ["Python", "FastAPI", "Node.js", "Express"] },
-  { title: "Onde os dados moram", items: ["PostgreSQL", "MongoDB"] },
+  { title: "Onde os dados moram", items: ["PostgreSQL"] },
   { title: "Como eu garanto que funciona", items: ["Pytest", "Vitest", "Testing Library", "GitHub Actions"] },
   { title: "Onde o sistema vive", items: ["Docker", "Render", "Neon", "Supabase", "Sentry"] },
   { title: "Como protejo os dados", items: ["Login seguro (JWT)", "Senhas criptografadas (Argon2)", "Acesso por perfil", "Histórico de alterações"] },
