@@ -29,6 +29,7 @@ export const profile = {
       "Meu projeto mais importante até hoje está no ar e é usado de verdade: o sistema de gestão de uma associação social, que eu construí do zero, do primeiro bate-papo com a equipe até a publicação.",
       "Estou aberto a vagas e a projetos freelancer.",
     ],
+    photo: { src: "/ryan/ryan-retrato.jpg", alt: "Ryan de terno cinza e gravata verde, num jardim" },
     /** Caminho do currículo em /public. Deixe vazio para esconder o botão. */
     resumeUrl: "",
   },
