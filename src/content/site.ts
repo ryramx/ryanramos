@@ -138,7 +138,14 @@ export const projects: Project[] = [
     tagline:
       "Um sistema de balcão para a lanchonete: registra cada pedido, calcula o total sozinho, guarda a forma de pagamento e mostra o histórico e o resumo das vendas.",
     meta: ["2026", "Em desenvolvimento", "Web"],
-    cover: "/projetos/patotinha/capa.jpg",
+    cover: "/projetos/patotinha/01-fila-de-preparo.jpg",
+    imageNote: "As telas usam nomes e pedidos fictícios.",
+    episodes: [
+      { title: "A fila da cozinha", line: "O chef vê cada comanda chegar e avança do aguardando ao pronto.", image: "/projetos/patotinha/01-fila-de-preparo.jpg" },
+      { title: "Pedido no celular", line: "No balcão, quem atende monta o pedido e o total aparece na hora.", image: "/projetos/patotinha/02-novo-pedido-celular.jpg" },
+      { title: "Quem pode o quê", line: "Administrador, gerente, chef e funcionário, cada um com o que precisa.", image: "/projetos/patotinha/03-perfis-e-permissoes.jpg" },
+      { title: "Equipe cadastrada", line: "Novo usuário em segundos, já com o perfil certo.", image: "/projetos/patotinha/04-novo-usuario.jpg" },
+    ],
     techDetails:
       "API REST em Node.js com Fastify e Prisma; telas em React, Vite, Tailwind CSS e TanStack Query; esquemas Zod compartilhados entre tela e API. Banco PostgreSQL 16 com CHECKs e gatilhos, total do pedido calculado no servidor e login com JWT. Testes unitários e de integração contra PostgreSQL real, ponta a ponta com Playwright e CI no GitHub Actions com lint, checagem de tipos e npm audit. Roda com Docker Compose.",
   },
