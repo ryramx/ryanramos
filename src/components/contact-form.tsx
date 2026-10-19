@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
-import { contact } from "@/content/site";
+import { contact, whatsappLink } from "@/content/site";
 
 type State = { kind: "idle" } | { kind: "sending" } | { kind: "sent" } | { kind: "error"; message: string };
 
@@ -15,6 +15,23 @@ export function ContactForm() {
   const preset = params.get("assunto");
   const initialSubject = preset && contact.subjects.includes(preset) ? preset : contact.subjects[0];
   const [state, setState] = useState<State>({ kind: "idle" });
+  const formRef = useRef<HTMLFormElement>(null);
+
+  /** Abre o WhatsApp do Ryan com a mensagem do formulário já escrita. */
+  function sendByWhatsApp() {
+    const form = formRef.current;
+    if (!form || !form.reportValidity()) return;
+    const data = new FormData(form);
+    const text = [
+      `Oi, Ryan! Sou ${data.get("nome")}.`,
+      `Assunto: ${data.get("assunto")}`,
+      "",
+      String(data.get("mensagem") ?? ""),
+      "",
+      `Meu contato: ${data.get("retorno")}`,
+    ].join("\n");
+    window.open(whatsappLink(text), "_blank", "noopener,noreferrer");
+  }
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -36,7 +53,7 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-4 rounded-md bg-surface-2/60 p-5 sm:p-6">
+    <form ref={formRef} onSubmit={onSubmit} className="space-y-4 rounded-md bg-surface-2/60 p-4 sm:p-6">
       <div>
         <label htmlFor="nome" className="mb-1 block text-sm text-muted">Nome</label>
         <input id="nome" name="nome" required maxLength={120} autoComplete="name" className={field} />
@@ -73,7 +90,14 @@ export function ContactForm() {
         disabled={state.kind === "sending"}
         className="w-full rounded-md bg-accent px-6 py-3 font-semibold text-white transition hover:brightness-110 disabled:opacity-60"
       >
-        {state.kind === "sending" ? "Enviando…" : "Enviar mensagem"}
+        {state.kind === "sending" ? "Enviando…" : "Enviar por e-mail"}
+      </button>
+      <button
+        type="button"
+        onClick={sendByWhatsApp}
+        className="w-full rounded-md border border-emerald-500/40 bg-emerald-500/10 px-6 py-3 font-semibold text-emerald-300 transition hover:bg-emerald-500/20"
+      >
+        Enviar pelo WhatsApp
       </button>
 
       <AnimatePresence mode="wait">

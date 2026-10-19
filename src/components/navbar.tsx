@@ -22,8 +22,8 @@ export function Navbar() {
         scrolled || open ? "bg-background/95 backdrop-blur" : "bg-gradient-to-b from-black/70 to-transparent"
       }`}
     >
-      <nav className="flex h-16 items-center justify-between px-4 sm:px-10">
-        <Link href="/" className="text-lg font-bold tracking-tight text-accent">
+      <nav className="flex h-14 items-center justify-between px-4 sm:h-16 sm:px-10">
+        <Link href="/" className="text-base font-bold tracking-tight text-accent sm:text-lg">
           {profile.name}
         </Link>
 
@@ -40,7 +40,7 @@ export function Navbar() {
         <div className="flex items-center gap-2">
           <Link
             href="/contato"
-            className="rounded-md bg-accent px-4 py-2 text-sm font-semibold text-white transition hover:brightness-110"
+            className="rounded-md bg-accent px-3 py-1.5 text-xs font-semibold text-white transition hover:brightness-110 sm:px-4 sm:py-2 sm:text-sm"
           >
             Vamos conversar
           </Link>
