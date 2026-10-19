@@ -23,7 +23,7 @@ export function Row({
   };
 
   return (
-    <section className="group/row relative py-6" aria-labelledby={id}>
+    <section className="group/row relative py-3 sm:py-6" aria-labelledby={id}>
       <SectionHeading title={title} subtitle={subtitle} id={id} />
       <div className="relative">
         <button

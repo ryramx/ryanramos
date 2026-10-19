@@ -22,7 +22,7 @@ export default function Home() {
     <>
       <Hero projects={featured} />
 
-      <div className="relative z-10 -mt-10 space-y-2">
+      <div className="relative z-10 space-y-2 sm:-mt-10">
         {featured.map((project, n) => {
           const episodes = project.episodes ?? [];
           const shown = episodes.some((e) => e.featured) ? episodes.filter((e) => e.featured) : episodes;

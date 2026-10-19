@@ -44,7 +44,7 @@ export async function POST(request: Request) {
   const to = process.env.CONTACT_TO_EMAIL;
   if (!apiKey || !to) {
     console.error("[contato] RESEND_API_KEY ou CONTACT_TO_EMAIL não configurados.");
-    return fail("O formulário ainda não está ativo. Me chama pelo WhatsApp ou e-mail ao lado.", 503);
+    return fail("O envio por e-mail ainda não está ativo. Use o botão \"Enviar pelo WhatsApp\".", 503);
   }
 
   const from = process.env.CONTACT_FROM_EMAIL || "Portfólio <onboarding@resend.dev>";

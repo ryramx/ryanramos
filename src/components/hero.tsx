@@ -32,7 +32,7 @@ export function Hero({ projects }: { projects: Project[] }) {
 
   return (
     <section
-      className="relative flex min-h-[88svh] flex-col justify-end overflow-hidden pb-8 pt-24 sm:min-h-[94svh]"
+      className="relative flex min-h-[70svh] flex-col justify-end overflow-hidden pb-6 pt-20 sm:min-h-[94svh] sm:pb-8 sm:pt-24"
       aria-roledescription="carrossel"
       aria-label="Projetos em destaque"
       onMouseEnter={() => setPaused(true)}
@@ -68,7 +68,7 @@ export function Hero({ projects }: { projects: Project[] }) {
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/45" />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
 
-      <div className="relative z-10 min-h-[340px] max-w-2xl px-4 sm:px-10">
+      <div className="relative z-10 max-w-2xl px-4 sm:min-h-[340px] sm:px-10">
         <AnimatePresence mode="wait">
           <motion.div
             key={project.slug}
@@ -81,32 +81,35 @@ export function Hero({ projects }: { projects: Project[] }) {
             <span className="inline-block rounded bg-accent-soft px-2 py-1 text-xs font-semibold uppercase tracking-wider text-accent">
               {project.badge}
             </span>
-            <h1 className="mt-4 text-3xl font-bold leading-tight tracking-tight sm:text-5xl">{project.title}</h1>
-            <p className="mt-3 text-sm text-muted">{project.meta.join(" · ")}</p>
-            <p className="mt-5 text-base leading-relaxed text-foreground/85 sm:text-lg">{project.tagline}</p>
+            <h1 className="mt-3 text-2xl font-bold leading-tight tracking-tight sm:mt-4 sm:text-5xl">{project.title}</h1>
+            <p className="mt-3 hidden text-sm text-muted sm:block">{project.meta.join(" · ")}</p>
+            <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-foreground/85 sm:mt-5 sm:line-clamp-none sm:text-lg">
+              {project.tagline}
+            </p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-5 flex gap-2 sm:mt-8 sm:gap-3">
               <Link
                 href={`/projetos/${project.slug}`}
-                className="inline-flex items-center gap-2 rounded-md bg-foreground px-6 py-3 font-semibold text-background transition hover:bg-foreground/85"
+                className="inline-flex items-center gap-2 whitespace-nowrap rounded-md bg-foreground px-4 py-2.5 text-sm font-semibold text-background transition hover:bg-foreground/85 sm:px-6 sm:py-3 sm:text-base"
               >
-                <span aria-hidden>▶</span> Conhecer o projeto
+                <span aria-hidden>▶</span> Ver projeto
               </Link>
               <Link
                 href={`/contato?assunto=${encodeURIComponent("Orçamento de projeto")}`}
-                className="inline-flex items-center rounded-md bg-white/15 px-6 py-3 font-semibold backdrop-blur transition hover:bg-white/25"
+                className="inline-flex items-center whitespace-nowrap rounded-md bg-white/15 px-4 py-2.5 text-sm font-semibold backdrop-blur transition hover:bg-white/25 sm:px-6 sm:py-3 sm:text-base"
               >
-                Quero um sistema assim
+                <span className="sm:hidden">Pedir orçamento</span>
+                <span className="hidden sm:inline">Quero um sistema assim</span>
               </Link>
             </div>
 
-            {project.imageNote && <p className="mt-6 text-xs text-muted/80">{project.imageNote}</p>}
+            {project.imageNote && <p className="mt-6 hidden text-xs text-muted/80 sm:block">{project.imageNote}</p>}
           </motion.div>
         </AnimatePresence>
       </div>
 
       {projects.length > 1 && (
-        <div className="relative z-10 mt-8 flex items-end gap-3 overflow-x-auto px-4 no-scrollbar sm:px-10">
+        <div className="relative z-10 mt-8 hidden items-end gap-3 px-10 sm:flex">
           {projects.map((p, i) => {
             const active = i === index;
             return (
@@ -140,6 +143,21 @@ export function Hero({ projects }: { projects: Project[] }) {
               </button>
             );
           })}
+        </div>
+      )}
+
+      {projects.length > 1 && (
+        <div className="relative z-10 mt-6 flex justify-center gap-2 sm:hidden">
+          {projects.map((p, i) => (
+            <button
+              key={p.slug}
+              type="button"
+              onClick={() => setIndex(i)}
+              aria-label={`Mostrar ${p.shortTitle}`}
+              aria-current={i === index}
+              className={`h-1.5 rounded-full transition-all ${i === index ? "w-6 bg-foreground" : "w-1.5 bg-foreground/40"}`}
+            />
+          ))}
         </div>
       )}
     </section>

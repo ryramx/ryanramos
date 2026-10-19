@@ -8,10 +8,10 @@ export function About() {
   const { about } = profile;
   return (
     <section
-      className="grid items-center gap-10 px-4 py-16 sm:px-10 md:grid-cols-[minmax(0,320px)_1fr] lg:gap-16"
+      className="grid items-center gap-8 px-4 py-10 sm:gap-10 sm:px-10 sm:py-16 md:grid-cols-[minmax(0,320px)_1fr] lg:gap-16"
       aria-labelledby="sobre"
     >
-      <Reveal className="mx-auto w-full max-w-[320px]">
+      <Reveal className="mx-auto w-full max-w-[220px] sm:max-w-[320px]">
         <div className="relative aspect-[4/5] overflow-hidden rounded-lg ring-1 ring-white/10">
           <Image
             src={about.photo.src}
@@ -27,7 +27,7 @@ export function About() {
         <h2 id="sobre" className="text-3xl font-bold tracking-tight sm:text-4xl">
           {about.title}
         </h2>
-        <div className="mt-6 space-y-4 text-lg leading-relaxed text-foreground/80">
+        <div className="mt-4 space-y-3 text-base leading-relaxed text-foreground/80 sm:mt-6 sm:space-y-4 sm:text-lg">
           {about.paragraphs.map((p) => (
             <p key={p}>{p}</p>
           ))}

@@ -250,11 +250,19 @@ export const stack: StackGroup[] = [
   { title: "Como protejo os dados", items: ["Login seguro (JWT)", "Senhas criptografadas (Argon2)", "Acesso por perfil", "Histórico de alterações"] },
 ];
 
+/** Número no formato internacional, só dígitos, usado nos links do WhatsApp. */
+export const whatsappNumber = "5581998164466";
+
+/** Link que abre a conversa no WhatsApp já com a mensagem escrita. */
+export function whatsappLink(text: string) {
+  return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+}
+
 export const contact = {
   title: "Bora conversar?",
   body: "Seja uma vaga, um projeto ou só uma troca de ideias, me chama. Respondo por aqui mesmo.",
   links: [
-    { kind: "whatsapp", label: "WhatsApp", value: "(81) 99816-4466", href: "https://wa.me/5581998164466" },
+    { kind: "whatsapp", label: "WhatsApp", value: "(81) 99816-4466", href: whatsappLink("Oi, Ryan! Vi seu portfólio e quero conversar.") },
     { kind: "email", label: "E-mail", value: "ramos04K@proton.me", href: "mailto:ramos04K@proton.me" },
     { kind: "linkedin", label: "LinkedIn", value: "linkedin.com/in/ryramx", href: "https://www.linkedin.com/in/ryramx" },
     { kind: "github", label: "GitHub", value: "github.com/ryramx", href: "https://github.com/ryramx" },

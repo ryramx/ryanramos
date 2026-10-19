@@ -22,7 +22,7 @@ export function PosterCard({
 }) {
   const body = (
     <motion.article
-      className="group relative aspect-video w-[78vw] shrink-0 snap-start overflow-hidden rounded-md bg-surface sm:w-[340px]"
+      className="group relative aspect-video w-[64vw] shrink-0 snap-start overflow-hidden rounded-md bg-surface sm:w-[340px]"
       initial={{ opacity: 0, scale: 0.94 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, margin: "-40px" }}
@@ -33,7 +33,7 @@ export function PosterCard({
         src={image}
         alt={title}
         fill
-        sizes="(min-width: 640px) 340px, 78vw"
+        sizes="(min-width: 640px) 340px, 64vw"
         className="object-cover object-top transition-transform duration-500 group-hover:scale-110"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
@@ -43,9 +43,9 @@ export function PosterCard({
         </span>
       )}
       <div className="absolute inset-x-0 bottom-0 p-3">
-        <h3 className="font-semibold">{title}</h3>
+        <h3 className="text-sm font-semibold sm:text-base">{title}</h3>
         {line && (
-          <p className="mt-1 max-h-0 overflow-hidden text-sm text-foreground/80 opacity-0 transition-all duration-300 group-hover:max-h-20 group-hover:opacity-100 group-focus-within:max-h-20 group-focus-within:opacity-100 max-sm:max-h-20 max-sm:opacity-100">
+          <p className="mt-1 max-h-0 overflow-hidden text-sm text-foreground/80 opacity-0 transition-all duration-300 group-hover:max-h-20 group-hover:opacity-100 group-focus-within:max-h-20 group-focus-within:opacity-100">
             {line}
           </p>
         )}
@@ -78,7 +78,7 @@ export function TextCard({
 }) {
   return (
     <motion.article
-      className="flex w-[78vw] shrink-0 snap-start flex-col rounded-md border border-white/5 bg-gradient-to-br from-surface-2 to-surface p-5 sm:w-[340px]"
+      className="flex w-[72vw] shrink-0 snap-start flex-col rounded-md border border-white/5 bg-gradient-to-br from-surface-2 to-surface p-4 sm:w-[340px] sm:p-5"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
