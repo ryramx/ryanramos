@@ -177,7 +177,8 @@ export const projects: Project[] = [
   },
 ];
 
-export const featuredProjectSlug = "acpb";
+/** Projetos que se revezam no carrossel do topo, na ordem em que aparecem. */
+export const featuredProjectSlugs = ["acpb", "patotinha"];
 
 export const seasons: Season[] = [
   {

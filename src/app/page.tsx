@@ -6,7 +6,7 @@ import { Row } from "@/components/row";
 import { Stack } from "@/components/stack";
 import { Workflow } from "@/components/workflow";
 import {
-  featuredProjectSlug,
+  featuredProjectSlugs,
   getProject,
   projects,
   seasons,
@@ -15,27 +15,38 @@ import {
 } from "@/content/site";
 
 export default function Home() {
-  const featured = getProject(featuredProjectSlug)!;
-  const episodes = featured.episodes?.filter((e) => e.featured) ?? [];
+  const featured = featuredProjectSlugs.map((slug) => getProject(slug)!);
   const inProgress = projects.filter((p) => p.status !== "no-ar");
 
   return (
     <>
-      <Hero project={featured} />
+      <Hero projects={featured} />
 
       <div className="relative z-10 -mt-10 space-y-2">
-        <Row id="projetos" title={`Em cartaz: dentro do ${featured.shortTitle}`} subtitle="Cada tela é um episódio.">
-          {episodes.map((ep, i) => (
-            <PosterCard
-              key={ep.image}
-              index={i}
-              title={ep.title}
-              line={ep.line}
-              image={ep.image}
-              href={`/projetos/${featured.slug}#episodios`}
-            />
-          ))}
-        </Row>
+        {featured.map((project, n) => {
+          const episodes = project.episodes ?? [];
+          const shown = episodes.some((e) => e.featured) ? episodes.filter((e) => e.featured) : episodes;
+          if (!shown.length) return null;
+          return (
+            <Row
+              key={project.slug}
+              id={n === 0 ? "projetos" : `episodios-${project.slug}`}
+              title={`Em cartaz: ${project.shortTitle}`}
+              subtitle="Cada tela é um episódio."
+            >
+              {shown.map((ep, i) => (
+                <PosterCard
+                  key={ep.image}
+                  index={i}
+                  title={ep.title}
+                  line={ep.line}
+                  image={ep.image}
+                  href={`/projetos/${project.slug}#episodios`}
+                />
+              ))}
+            </Row>
+          );
+        })}
 
         <About />
 
