@@ -22,14 +22,10 @@ export function ContactForm() {
     const form = formRef.current;
     if (!form || !form.reportValidity()) return;
     const data = new FormData(form);
-    const text = [
-      `Oi, Ryan! Sou ${data.get("nome")}.`,
-      `Assunto: ${data.get("assunto")}`,
-      "",
-      String(data.get("mensagem") ?? ""),
-      "",
-      `Meu contato: ${data.get("retorno")}`,
-    ].join("\n");
+    // Curta e informal: o WhatsApp já mostra o número de quem escreve.
+    const firstName = String(data.get("nome") ?? "").trim().split(/\s+/)[0];
+    const subject = String(data.get("assunto") ?? "").toLowerCase();
+    const text = `Oi, Ryan! Aqui é ${firstName} 👋 Vim pelo portfólio (${subject}).\n\n${String(data.get("mensagem") ?? "").trim()}`;
     window.open(whatsappLink(text), "_blank", "noopener,noreferrer");
   }
 

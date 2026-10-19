@@ -32,16 +32,47 @@ export function Hero({ projects }: { projects: Project[] }) {
 
   return (
     <section
-      className="relative flex min-h-[70svh] flex-col justify-end overflow-hidden pb-6 pt-20 sm:min-h-[94svh] sm:pb-8 sm:pt-24"
+      className="relative flex flex-col overflow-hidden pb-6 pt-14 sm:min-h-[94svh] sm:justify-end sm:pb-8 sm:pt-24"
       aria-roledescription="carrossel"
       aria-label="Projetos em destaque"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
+      {/* Celular: a tela do projeto aparece inteira, sem sombra por cima, acima do texto. */}
+      <div className="relative aspect-[16/10] w-full overflow-hidden sm:hidden">
+        <AnimatePresence initial={false}>
+          <motion.div
+            key={project.slug}
+            className="absolute inset-0"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.6 }}
+            drag={projects.length > 1 ? "x" : false}
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.2}
+            onDragEnd={(_, info) => {
+              if (info.offset.x < -60) go(1);
+              else if (info.offset.x > 60) go(-1);
+            }}
+          >
+            <Image
+              src={project.cover}
+              alt={`Tela do ${project.shortTitle}`}
+              fill
+              priority={index === 0}
+              sizes="100vw"
+              className="pointer-events-none object-cover object-top"
+            />
+          </motion.div>
+        </AnimatePresence>
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-background to-transparent" />
+      </div>
+
       <AnimatePresence initial={false}>
         <motion.div
           key={project.slug}
-          className="absolute inset-0"
+          className="absolute inset-0 hidden sm:block"
           initial={{ opacity: 0, scale: 1.1 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
@@ -65,10 +96,10 @@ export function Hero({ projects }: { projects: Project[] }) {
         </motion.div>
       </AnimatePresence>
 
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/45" />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
+      <div className="pointer-events-none absolute inset-0 hidden bg-gradient-to-r from-background from-30% via-background/75 via-50% to-background/10 sm:block" />
+      <div className="pointer-events-none absolute inset-0 hidden bg-gradient-to-t from-background via-background/20 to-transparent sm:block" />
 
-      <div className="relative z-10 max-w-2xl px-4 sm:min-h-[340px] sm:px-10">
+      <div className="relative z-10 mt-4 max-w-2xl px-4 sm:mt-0 sm:min-h-[340px] sm:px-10">
         <AnimatePresence mode="wait">
           <motion.div
             key={project.slug}
