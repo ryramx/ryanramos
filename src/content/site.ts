@@ -14,6 +14,10 @@ import type {
 } from "./types";
 
 const acpbImg = (file: string) => `/projetos/acpb/${file}`;
+const compozeImg = (file: string) => `/projetos/compoze/${file}`;
+
+/** APK mais recente do Compoze, publicado pelo CI nos Releases do GitHub. */
+const compozeApk = "https://github.com/ryramx/Compoze_app/releases/latest/download/Compoze.apk";
 
 export const profile = {
   name: "Ryan Filipe",
@@ -130,6 +134,52 @@ export const projects: Project[] = [
     links: [],
   },
   {
+    slug: "compoze",
+    title: "Compoze, o caderno de quem compõe",
+    shortTitle: "Compoze",
+    status: "em-desenvolvimento",
+    badge: "Em desenvolvimento · App Android",
+    tagline:
+      "Letra, cifra e coautoria no mesmo caderno. Duas pessoas escrevem a mesma canção ao mesmo tempo, até sem internet, e o app junta tudo sem perder um verso.",
+    meta: ["2026", "Web, celular e Android", "Funciona sem internet"],
+    cover: compozeImg("01-mesa.jpg"),
+    heroImages: [compozeImg("01-mesa.jpg"), compozeImg("02-editor.jpg"), compozeImg("05-projetos.jpg")],
+    imageNote: "As telas mostram a demonstração do app, com pessoas e canções fictícias.",
+    story: [
+      {
+        title: "A ideia",
+        body: "Canção boa nasce em qualquer lugar: no ônibus, no ensaio, no estúdio sem sinal. E quase sempre a quatro mãos. O Compoze é um caderno compartilhado para isso: a letra com a cifra em cima, quem escreveu cada trecho, a divisão da coautoria e o caminho da ideia até a gravação.",
+      },
+      {
+        title: "O desafio técnico",
+        body: "Duas pessoas editando o mesmo verso, uma delas offline, sem nenhuma perder texto. Resolvi com um documento colaborativo (CRDT) por canção, que guarda tudo no aparelho e sincroniza quando a rede volta, e uma fila de envio para o resto dos dados. O app instala no celular e abre sem internet.",
+      },
+    ],
+    outcomes: [
+      { title: "Escrita a quatro mãos, ao vivo.", body: "Cada pessoa vê onde a outra está escrevendo, e o app marca quem escreveu cada verso." },
+      { title: "Funciona sem internet.", body: "Criar e editar canções offline; tudo sobe sozinho quando a rede volta." },
+      { title: "Coautoria combinada.", body: "A divisão dos direitos fica na própria canção e precisa fechar em 100% antes do registro." },
+      { title: "Registro com prova.", body: "Cada versão registrada ganha uma impressão digital (SHA-256) encadeada à anterior." },
+      { title: "Convites como numa rede social.", body: "Busque a pessoa pelo @ e ela aceita ou recusa. Quem não tem conta recebe um link." },
+      { title: "Instala no celular.", body: "App para Android e instalável pelo navegador no Android e no iPhone." },
+    ],
+    episodes: [
+      { title: "A mesa", line: "Onde você parou, a esteira das canções e o que a roda está fazendo.", image: compozeImg("01-mesa.jpg"), featured: true },
+      { title: "O caderno", line: "Letra com a cifra em cima, estágio, tom e a divisão da coautoria.", image: compozeImg("02-editor.jpg"), featured: true },
+      { title: "No bolso", line: "O mesmo caderno no celular, inclusive sem sinal.", image: compozeImg("03-celular.jpg"), featured: true },
+      { title: "De madrugada", line: "Tema escuro para quem compõe tarde.", image: compozeImg("04-editor-escuro.jpg"), featured: true },
+      { title: "Projetos", line: "Singles, EPs e álbuns com as faixas em ordem e o andamento.", image: compozeImg("05-projetos.jpg") },
+      { title: "A entrada", line: "Dá para experimentar tudo no modo demonstração, sem criar conta.", image: compozeImg("06-entrada.jpg") },
+    ],
+    techDetails:
+      "Monorepo com front-end em React 19, TypeScript, Vite e Tailwind CSS (design system próprio) e API em Node.js 24 com Fastify, Zod e Drizzle sobre PostgreSQL 18. Edição colaborativa em tempo real com Yjs (CRDT) e Hocuspocus, cópia local no IndexedDB e fila de escritas offline com chaves de idempotência. PWA com service worker e app Android com Capacitor, assinado e publicado pelo GitHub Actions. Autenticação própria com JWT e refresh rotativo, testes com Vitest e PostgreSQL real em container, decisões registradas em ADRs. Staging no Render com banco no Neon.",
+    nextChapters: ["Seguir outros compositores e achar parceria", "Gravar memo de voz direto na canção", "Publicar nas lojas Google Play e App Store"],
+    links: [
+      { label: "Baixar para Android", href: compozeApk },
+      { label: "Abrir no navegador", href: "https://compoze-web-staging.onrender.com" },
+    ],
+  },
+  {
     slug: "patotinha",
     title: "Sistema de Pedidos da Patotinha da Vovó",
     shortTitle: "Patotinha da Vovó",
@@ -178,7 +228,7 @@ export const projects: Project[] = [
 ];
 
 /** Projetos que se revezam no carrossel do topo, na ordem em que aparecem. */
-export const featuredProjectSlugs = ["acpb", "patotinha"];
+export const featuredProjectSlugs = ["acpb", "compoze", "patotinha"];
 
 export const seasons: Season[] = [
   {
