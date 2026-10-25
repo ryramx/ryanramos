@@ -18,11 +18,6 @@ const compozeImg = (file: string) => `/projetos/compoze/${file}`;
 
 /** APK mais recente do Compoze, publicado pelo CI nos Releases do GitHub. */
 const compozeApk = "https://github.com/ryramx/Compoze_app/releases/latest/download/Compoze.apk";
-/**
- * Troque para true quando o primeiro Release do Compoze sair e o repositório
- * Compoze_app estiver público; antes disso o link do APK dá 404.
- */
-const compozeApkPublicado = false;
 
 export const profile = {
   name: "Ryan Filipe",
@@ -180,7 +175,7 @@ export const projects: Project[] = [
       "Monorepo com front-end em React 19, TypeScript, Vite e Tailwind CSS (design system próprio) e API em Node.js 24 com Fastify, Zod e Drizzle sobre PostgreSQL 18. Edição colaborativa em tempo real com Yjs (CRDT) e Hocuspocus, cópia local no IndexedDB e fila de escritas offline com chaves de idempotência. PWA com service worker e app Android com Capacitor, assinado e publicado pelo GitHub Actions. Autenticação própria com JWT e refresh rotativo, testes com Vitest e PostgreSQL real em container, decisões registradas em ADRs. Staging no Render com banco no Neon.",
     nextChapters: ["Seguir outros compositores e achar parceria", "Gravar memo de voz direto na canção", "Publicar nas lojas Google Play e App Store"],
     links: [
-      ...(compozeApkPublicado ? [{ label: "Baixar para Android", href: compozeApk }] : []),
+      { label: "Baixar para Android", href: compozeApk },
       // No navegador, o Compoze também instala como app no Android e no iPhone.
       { label: "Abrir no navegador", href: "https://compoze-web-staging.onrender.com" },
     ],
