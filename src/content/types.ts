@@ -17,6 +17,8 @@ export interface Project {
   tagline: string;
   meta: string[];
   cover: string;
+  /** Fundo do topo da página do projeto, quando a capa tem texto e brigaria com o título. */
+  pageCover?: string;
   /** Imagens que alternam no destaque do topo, como um trailer. */
   heroImages?: string[];
   imageNote?: string;
