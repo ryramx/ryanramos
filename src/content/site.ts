@@ -20,12 +20,12 @@ const compozeImg = (file: string) => `/projetos/compoze/${file}`;
 const compozeApk = "https://github.com/ryramx/Compoze_app/releases/latest/download/Compoze.apk";
 
 export const profile = {
-  name: "Ryan Filipe",
+  name: "Ryan Ramos",
   role: "Desenvolvedor Full Stack",
   location: "São Lourenço da Mata, PE",
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   description:
-    "Portfólio de Ryan Filipe, desenvolvedor full stack em Pernambuco. Sistemas web sob medida, do primeiro bate-papo até a publicação.",
+    "Portfólio de Ryan Ramos, desenvolvedor full stack em Pernambuco. Sistemas web sob medida, do primeiro bate-papo até a publicação.",
   about: {
     title: "Oi, eu sou o Ryan.",
     paragraphs: [
@@ -140,7 +140,7 @@ export const projects: Project[] = [
     status: "em-desenvolvimento",
     badge: "Em desenvolvimento · App Android",
     tagline:
-      "Letra, cifra e coautoria no mesmo caderno. Duas pessoas escrevem a mesma canção ao mesmo tempo, até sem internet, e o app junta tudo sem perder um verso.",
+      "Letra, cifra e coautoria no mesmo caderno. Duas pessoas escrevem a mesma canção ao mesmo tempo, até sem internet, e o app junta tudo sem perder um verso. Em volta do caderno, uma roda de quem compõe: seguir, conversar e receber avisos no celular.",
     meta: ["2026", "Web, celular e Android", "Funciona sem internet"],
     cover: compozeImg("01-mesa.jpg"),
     heroImages: [compozeImg("01-mesa.jpg"), compozeImg("02-editor.jpg"), compozeImg("05-projetos.jpg")],
@@ -154,6 +154,10 @@ export const projects: Project[] = [
         title: "O desafio técnico",
         body: "Duas pessoas editando o mesmo verso, uma delas offline, sem nenhuma perder texto. Resolvi com um documento colaborativo (CRDT) por canção, que guarda tudo no aparelho e sincroniza quando a rede volta, e uma fila de envio para o resto dos dados. O app instala no celular e abre sem internet.",
       },
+      {
+        title: "A roda",
+        body: "Parceria se acha conversando. Por isso o Compoze ganhou uma camada social: buscar qualquer pessoa pelo @, seguir e seguir de volta, um mural para mostrar no que você está trabalhando e conversas a dois que chegam na hora. Com o app fechado, a mensagem, o convite ou o seguidor novo viram notificação no celular.",
+      },
     ],
     outcomes: [
       { title: "Escrita a quatro mãos, ao vivo.", body: "Cada pessoa vê onde a outra está escrevendo, e o app marca quem escreveu cada verso." },
@@ -162,18 +166,24 @@ export const projects: Project[] = [
       { title: "Registro com prova.", body: "Cada versão registrada ganha uma impressão digital (SHA-256) encadeada à anterior." },
       { title: "Convites como numa rede social.", body: "Busque a pessoa pelo @ e ela aceita ou recusa. Quem não tem conta recebe um link." },
       { title: "Instala no celular.", body: "App para Android e instalável pelo navegador no Android e no iPhone." },
+      { title: "Gente que compõe.", body: "Seguidores e quem você segue numa lista, com Mensagem e Seguir de volta. Conversas a dois chegam na hora." },
+      { title: "Avisos no celular.", body: "Mensagem, convite e seguidor novo viram notificação, no Android e no navegador. O app pede a permissão ao abrir." },
+      { title: "Memo de voz e apoio por PIX.", body: "A melodia gravada dentro da canção e projetos com meta de financiamento, pagos direto na chave PIX da artista." },
     ],
     episodes: [
       { title: "A mesa", line: "Onde você parou, a esteira das canções e o que a roda está fazendo.", image: compozeImg("01-mesa.jpg"), featured: true },
       { title: "O caderno", line: "Letra com a cifra em cima, estágio, tom e a divisão da coautoria.", image: compozeImg("02-editor.jpg"), featured: true },
       { title: "No bolso", line: "O mesmo caderno no celular, inclusive sem sinal.", image: compozeImg("03-celular.jpg"), featured: true },
       { title: "De madrugada", line: "Tema escuro para quem compõe tarde.", image: compozeImg("04-editor-escuro.jpg"), featured: true },
+      { title: "O mural", line: "O que está saindo do caderno de quem você acompanha, com a canção citada.", image: compozeImg("07-mural.jpg") },
+      { title: "Conversas", line: "Mensagens a dois, ao vivo, em todos os aparelhos.", image: compozeImg("08-conversas.jpg") },
+      { title: "Seguidores", line: "Quem segue você e quem você segue, com Mensagem e Seguir de volta.", image: compozeImg("09-seguidores.jpg") },
       { title: "Projetos", line: "Singles, EPs e álbuns com as faixas em ordem e o andamento.", image: compozeImg("05-projetos.jpg") },
       { title: "A entrada", line: "Dá para experimentar tudo no modo demonstração, sem criar conta.", image: compozeImg("06-entrada.jpg") },
     ],
     techDetails:
-      "Monorepo com front-end em React 19, TypeScript, Vite e Tailwind CSS (design system próprio) e API em Node.js 24 com Fastify, Zod e Drizzle sobre PostgreSQL 18. Edição colaborativa em tempo real com Yjs (CRDT) e Hocuspocus, cópia local no IndexedDB e fila de escritas offline com chaves de idempotência. PWA com service worker e app Android com Capacitor, assinado e publicado pelo GitHub Actions. Autenticação própria com JWT e refresh rotativo, testes com Vitest e PostgreSQL real em container, decisões registradas em ADRs. Staging no Render com banco no Neon.",
-    nextChapters: ["Seguir outros compositores e achar parceria", "Gravar memo de voz direto na canção", "Publicar nas lojas Google Play e App Store"],
+      "Monorepo com front-end em React 19, TypeScript, Vite e Tailwind CSS (design system próprio) e API em Node.js 24 com Fastify, Zod e Drizzle sobre PostgreSQL 18. Edição colaborativa em tempo real com Yjs (CRDT) e Hocuspocus, cópia local no IndexedDB e fila de escritas offline com chaves de idempotência. PWA com service worker e app Android com Capacitor, assinado e publicado pelo GitHub Actions. Mensagens ao vivo por Server-Sent Events e notificações por Web Push (VAPID) e Firebase Cloud Messaging. Áudio e imagens guardados no próprio PostgreSQL e apoio a projetos por PIX (BR Code). Autenticação própria com JWT e refresh rotativo, testes com Vitest e PostgreSQL real em container, decisões registradas em ADRs. Staging no Render com banco no Neon.",
+    nextChapters: ["Publicar nas lojas Google Play e App Store", "Carimbo de tempo de terceiros no registro das obras", "Planos de assinatura"],
     links: [
       { label: "Baixar para Android", href: compozeApk },
       // No navegador, o Compoze também instala como app no Android e no iPhone.
