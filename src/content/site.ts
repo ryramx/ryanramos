@@ -15,7 +15,7 @@ import type {
 
 const acpbImg = (file: string) => `/projetos/acpb/${file}`;
 const compozeImg = (file: string) => `/projetos/compoze/${file}`;
-const sendImg = (file: string) => `/projetos/send/${file}`;
+const sendImg = (file: string) => `/projetos/send/prints/${file}`;
 
 /** APK mais recente do Compoze, publicado pelo CI nos Releases do GitHub. */
 const compozeApk = "https://github.com/ryramx/Compoze_app/releases/latest/download/Compoze.apk";
@@ -221,9 +221,9 @@ export const projects: Project[] = [
     tagline:
       "Uma empresa que cria sistemas sob medida e cobra o suporte por mensalidade precisava saber, num só lugar, quem são os clientes, o que cada contrato cobre e quem está em dia. Construí esse sistema para ela.",
     meta: ["2026", "Projeto real para cliente", "Web, no computador e no celular"],
-    cover: sendImg("01-capa.jpg"),
-    pageCover: sendImg("02-fundo.jpg"),
-    imageNote: "O código e as telas são do cliente, por isso aqui aparecem só os módulos, sem dados reais.",
+    cover: sendImg("01-painel.jpg"),
+    heroImages: [sendImg("01-painel.jpg"), sendImg("02-indicadores.jpg"), sendImg("07-contas-a-receber.jpg")],
+    imageNote: "As telas mostram uma cópia de demonstração, com empresas, pessoas e valores fictícios.",
     story: [
       {
         title: "O começo",
@@ -246,6 +246,24 @@ export const projects: Project[] = [
     ],
     techDetails:
       "PHP 8 puro, sem framework, com MySQL/MariaDB; telas em JavaScript vanilla e Tailwind CSS compilado. Arquitetura multiempresa, com um banco de segurança e um banco por empresa. Controle de acesso por perfis, cofre de senhas cifrado com chave da aplicação, envio de e-mail por SMTP, importação de extrato OFX, monitoramento de links e rotinas agendadas (contratos, cobrança e monitoramento). Testes automáticos a cada módulo e publicação em VPS por GitHub Actions com SSH, sem Docker.",
+    episodes: [
+      { title: "O dia começa aqui", line: "A cobrança do mês, a receita recorrente e o que precisa de atenção.", image: sendImg("01-painel.jpg"), featured: true },
+      { title: "A saúde do negócio", line: "MRR, ARR, previsão de 12 meses e uma nota de saúde para cada cliente.", image: sendImg("02-indicadores.jpg"), featured: true },
+      { title: "Os clientes", line: "Quem paga quanto e em que dia, com filtros em cada coluna.", image: sendImg("03-clientes.jpg"), featured: true },
+      { title: "A ficha do cliente", line: "Contratos, forma de pagamento e a cota de usuários de cada sistema.", image: sendImg("04-cliente-ficha.jpg") },
+      { title: "O contrato", line: "Vigência, renovação automática, multa de cancelamento e reajuste pelo IPCA.", image: sendImg("05-contrato.jpg") },
+      { title: "A mensalidade do mês", line: "Um lançamento por cliente, com aviso de quem ficou de fora.", image: sendImg("06-mensalidades.jpg"), featured: true },
+      { title: "A receber", line: "Em aberto, vencido e há quantos dias.", image: sendImg("07-contas-a-receber.jpg"), featured: true },
+      { title: "Cobrança sem esquecer ninguém", line: "Multa e juros calculados, lembretes por e-mail e um botão para o WhatsApp.", image: sendImg("08-titulo-regua.jpg") },
+      { title: "O extrato do banco", line: "O arquivo OFX entra e cada pagamento encontra sua fatura.", image: sendImg("09-conciliacao-ofx.jpg"), featured: true },
+      { title: "Quem caiu", line: "Os sistemas dos clientes vigiados, com o aviso quando um sai do ar.", image: sendImg("10-monitoramento.jpg"), featured: true },
+      { title: "Licenças", line: "Uma chave por cliente e sistema, com usuários ativos e versão.", image: sendImg("11-licencas.jpg") },
+      { title: "Domínios e SSL", line: "O que vence primeiro aparece em vermelho.", image: sendImg("12-dominios-ssl.jpg") },
+      { title: "O cofre", line: "Senhas cifradas, e cada consulta fica registrada.", image: sendImg("13-cofre-senhas.jpg"), featured: true },
+      { title: "Quem pode o quê", line: "Criar, ler, editar e excluir, perfil por perfil.", image: sendImg("14-perfis-acesso.jpg") },
+      { title: "No bolso", line: "O painel no celular.", image: sendImg("15-celular-painel.jpg") },
+      { title: "Cobrando da rua", line: "As contas a receber no celular.", image: sendImg("16-celular-receber.jpg") },
+    ],
     nextChapters: ["Publicação na VPS da empresa", "Portal do cliente", "CRM de negócios", "Projetos e desenvolvimento"],
     // Repositório privado do cliente: sem link.
     links: [],
@@ -279,7 +297,7 @@ export const projects: Project[] = [
 ];
 
 /** Projetos que se revezam no carrossel do topo, na ordem em que aparecem. */
-export const featuredProjectSlugs = ["acpb", "compoze", "patotinha"];
+export const featuredProjectSlugs = ["acpb", "compoze", "patotinha", "send"];
 
 export const seasons: Season[] = [
   {
