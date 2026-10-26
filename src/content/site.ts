@@ -20,12 +20,12 @@ const compozeImg = (file: string) => `/projetos/compoze/${file}`;
 const compozeApk = "https://github.com/ryramx/Compoze_app/releases/latest/download/Compoze.apk";
 
 export const profile = {
-  name: "Ryan Filipe",
+  name: "Ryan Ramos",
   role: "Desenvolvedor Full Stack",
   location: "São Lourenço da Mata, PE",
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   description:
-    "Portfólio de Ryan Filipe, desenvolvedor full stack em Pernambuco. Sistemas web sob medida, do primeiro bate-papo até a publicação.",
+    "Portfólio de Ryan Ramos, desenvolvedor full stack em Pernambuco. Sistemas web sob medida, do primeiro bate-papo até a publicação.",
   about: {
     title: "Oi, eu sou o Ryan.",
     paragraphs: [
