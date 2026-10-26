@@ -185,6 +185,7 @@ export const projects: Project[] = [
       "Monorepo com front-end em React 19, TypeScript, Vite e Tailwind CSS (design system próprio) e API em Node.js 24 com Fastify, Zod e Drizzle sobre PostgreSQL 18. Edição colaborativa em tempo real com Yjs (CRDT) e Hocuspocus, cópia local no IndexedDB e fila de escritas offline com chaves de idempotência. PWA com service worker e app Android com Capacitor, assinado e publicado pelo GitHub Actions. Mensagens ao vivo por Server-Sent Events e notificações por Web Push (VAPID) e Firebase Cloud Messaging. Áudio e imagens guardados no próprio PostgreSQL e apoio a projetos por PIX (BR Code). Autenticação própria com JWT e refresh rotativo, testes com Vitest e PostgreSQL real em container, decisões registradas em ADRs. Staging no Render com banco no Neon.",
     nextChapters: ["Publicar nas lojas Google Play e App Store", "Carimbo de tempo de terceiros no registro das obras", "Planos de assinatura"],
     links: [
+      { label: "Código no GitHub", href: "https://github.com/ryramx/Compoze_app" },
       { label: "Baixar para Android", href: compozeApk },
       // No navegador, o Compoze também instala como app no Android e no iPhone.
       { label: "Abrir no navegador", href: "https://compoze-web-staging.onrender.com" },
