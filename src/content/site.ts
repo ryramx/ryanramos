@@ -15,6 +15,7 @@ import type {
 
 const acpbImg = (file: string) => `/projetos/acpb/${file}`;
 const compozeImg = (file: string) => `/projetos/compoze/${file}`;
+const sendImg = (file: string) => `/projetos/send/${file}`;
 
 /** APK mais recente do Compoze, publicado pelo CI nos Releases do GitHub. */
 const compozeApk = "https://github.com/ryramx/Compoze_app/releases/latest/download/Compoze.apk";
@@ -212,6 +213,43 @@ export const projects: Project[] = [
       "API REST em Node.js com Fastify e Prisma; telas em React, Vite, Tailwind CSS e TanStack Query; esquemas Zod compartilhados entre tela e API. Banco PostgreSQL 16 com CHECKs e gatilhos, total do pedido calculado no servidor e login com JWT. Testes unitários e de integração contra PostgreSQL real, ponta a ponta com Playwright e CI no GitHub Actions com lint, checagem de tipos e npm audit. Roda com Docker Compose.",
   },
   {
+    slug: "send",
+    title: "Sistema de Gestão de uma empresa de software",
+    shortTitle: "Gestão de software house",
+    status: "em-desenvolvimento",
+    badge: "Em desenvolvimento · Projeto real",
+    tagline:
+      "Uma empresa que cria sistemas sob medida e cobra o suporte por mensalidade precisava saber, num só lugar, quem são os clientes, o que cada contrato cobre e quem está em dia. Construí esse sistema para ela.",
+    meta: ["2026", "Projeto real para cliente", "Web, no computador e no celular"],
+    cover: sendImg("01-capa.jpg"),
+    imageNote: "O código e as telas são do cliente, por isso aqui aparecem só os módulos, sem dados reais.",
+    story: [
+      {
+        title: "O começo",
+        body: "A empresa acompanha cada cliente da reunião de negócios até a implantação e o suporte, que é cobrado por mensalidade e atendido pelo WhatsApp. Contratos, cobranças e acessos aos sistemas dos clientes ficavam espalhados. Comecei pela base, com login, perfis e empresas, e fui entregando um módulo por vez.",
+      },
+      {
+        title: "Do jeito que eu trabalhei",
+        body: "Levantei as regras com o dono da empresa, escrevi um plano por etapas e fui registrando cada decisão. Usei inteligência artificial como apoio na construção, revisando cada entrega com testes automáticos antes de seguir para a próxima.",
+      },
+    ],
+    outcomes: [
+      { title: "Contratos completos.", body: "Vários contratos por cliente, renovação automática, reajuste por índice aprovado pelo gestor e o contrato em PDF." },
+      { title: "Mensalidade que se calcula sozinha.", body: "Primeiro e último mês proporcionais e um lançamento por cliente somando todos os contratos." },
+      { title: "Cobrança sem esquecer ninguém.", body: "Contas a receber com multa e juros, régua de lembretes por e-mail e botão para cobrar no WhatsApp." },
+      { title: "Banco conferido.", body: "O extrato do banco (OFX) é importado e cada pagamento é ligado à sua fatura." },
+      { title: "Os sistemas dos clientes sob controle.", body: "Licenças, domínios, certificados e servidores, com aviso quando um site sai do ar ou um certificado vai vencer." },
+      { title: "Senhas guardadas com segurança.", body: "Um cofre cifrado para os acessos de cada cliente." },
+      { title: "A saúde do negócio.", body: "Receita recorrente (MRR e ARR), previsão, inadimplência e uma nota de saúde para cada cliente." },
+      { title: "Cada um vê só o que precisa.", body: "Perfis de Admin, Gestor, Comercial, Financeiro, Suporte e Desenvolvimento, com ferramentas de LGPD." },
+    ],
+    techDetails:
+      "PHP 8 puro, sem framework, com MySQL/MariaDB; telas em JavaScript vanilla e Tailwind CSS compilado. Arquitetura multiempresa, com um banco de segurança e um banco por empresa. Controle de acesso por perfis, cofre de senhas cifrado com chave da aplicação, envio de e-mail por SMTP, importação de extrato OFX, monitoramento de links e rotinas agendadas (contratos, cobrança e monitoramento). Testes automáticos a cada módulo e publicação em VPS por GitHub Actions com SSH, sem Docker.",
+    nextChapters: ["Publicação na VPS da empresa", "Portal do cliente", "CRM de negócios", "Projetos e desenvolvimento"],
+    // Repositório privado do cliente: sem link.
+    links: [],
+  },
+  {
     slug: "portfolio",
     title: "Este portfólio",
     shortTitle: "Este portfólio",
@@ -304,9 +342,9 @@ export const workflow = [
 ];
 
 export const stack: StackGroup[] = [
-  { title: "O que você vê na tela", items: ["React", "TypeScript", "Tailwind CSS", "Angular"] },
-  { title: "O que roda por trás", items: ["Python", "FastAPI", "Node.js", "Express"] },
-  { title: "Onde os dados moram", items: ["PostgreSQL"] },
+  { title: "O que você vê na tela", items: ["React", "TypeScript", "JavaScript", "Tailwind CSS", "Angular"] },
+  { title: "O que roda por trás", items: ["Python", "FastAPI", "Node.js", "Express", "PHP"] },
+  { title: "Onde os dados moram", items: ["PostgreSQL", "MySQL / MariaDB"] },
   { title: "Como eu garanto que funciona", items: ["Pytest", "Vitest", "Testing Library", "GitHub Actions"] },
   { title: "Onde o sistema vive", items: ["Docker", "Render", "Neon", "Supabase", "Sentry"] },
   { title: "Como protejo os dados", items: ["Login seguro (JWT)", "Senhas criptografadas (Argon2)", "Acesso por perfil", "Histórico de alterações"] },
