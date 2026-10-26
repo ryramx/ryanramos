@@ -28,7 +28,7 @@ export default async function ProjectPage({ params }: PageProps<"/projetos/[slug
   return (
     <article>
       <header className="relative flex min-h-[70svh] items-end overflow-hidden pb-12 pt-24">
-        <Image src={project.cover} alt="" fill priority sizes="100vw" className="object-cover object-top" />
+        <Image src={project.pageCover ?? project.cover} alt="" fill priority sizes="100vw" className="object-cover object-top" />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/20" />
         <Reveal className="relative z-10 max-w-3xl px-4 sm:px-10">
           <span className="inline-block rounded bg-accent-soft px-2 py-1 text-xs font-semibold uppercase tracking-wider text-accent">

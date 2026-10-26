@@ -222,6 +222,7 @@ export const projects: Project[] = [
       "Uma empresa que cria sistemas sob medida e cobra o suporte por mensalidade precisava saber, num só lugar, quem são os clientes, o que cada contrato cobre e quem está em dia. Construí esse sistema para ela.",
     meta: ["2026", "Projeto real para cliente", "Web, no computador e no celular"],
     cover: sendImg("01-capa.jpg"),
+    pageCover: sendImg("02-fundo.jpg"),
     imageNote: "O código e as telas são do cliente, por isso aqui aparecem só os módulos, sem dados reais.",
     story: [
       {
