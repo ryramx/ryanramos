@@ -16,6 +16,7 @@ import type {
 const acpbImg = (file: string) => `/projetos/acpb/${file}`;
 const compozeImg = (file: string) => `/projetos/compoze/${file}`;
 const sendImg = (file: string) => `/projetos/send/prints/${file}`;
+const ritmoImg = (file: string) => `/projetos/ritmo/${file}`;
 
 /** APK mais recente do Compoze, publicado pelo CI nos Releases do GitHub. */
 const compozeApk = "https://github.com/ryramx/Compoze_app/releases/latest/download/Compoze.apk";
@@ -269,6 +270,54 @@ export const projects: Project[] = [
     links: [],
   },
   {
+    slug: "ritmo",
+    title: "Ritmo, o copiloto do vendedor de rua",
+    shortTitle: "Ritmo",
+    status: "em-desenvolvimento",
+    badge: "Em desenvolvimento · Produto em equipe",
+    tagline:
+      "O vendedor pergunta pelo WhatsApp, pelo app ou pelo portal como está um cliente e recebe o número exato, tirado dos dados da própria empresa. Toda manhã chega um resumo do dia, com quem parou de comprar e quem saiu do ritmo.",
+    meta: ["2026", "Em equipe de três desenvolvedores", "WhatsApp, app e portal web"],
+    cover: ritmoImg("06-visao-geral-escuro.jpg"),
+    heroImages: [ritmoImg("06-visao-geral-escuro.jpg"), ritmoImg("02-pergunte-ao-ritmo.jpg"), ritmoImg("03-clientes.jpg")],
+    imageNote: "As telas mostram a demonstração do portal, com clientes, vendedores e valores fictícios.",
+    story: [
+      {
+        title: "A ideia",
+        body: "Quem vende na rua passa o dia entre um cliente e outro e não tem tempo de abrir relatório. O Ritmo junta os pedidos que já estão no sistema da empresa (o ERP) e responde perguntas simples com números certos: quanto o cliente comprou, quem está sem comprar e quanto falta para a meta.",
+      },
+      {
+        title: "A minha parte",
+        body: "Somos três desenvolvedores, cada um dono de uma área. Eu cuido dos dados e das integrações: é o meu código que traz os pedidos do ERP para dentro do Ritmo, por planilha CSV ou pela API do sistema da empresa, confere linha por linha e registra cada sincronização. Também combinei com a área de inteligência artificial quais consultas a IA pode chamar, e cuido da rota e do app.",
+      },
+      {
+        title: "A regra de ouro",
+        body: "A IA nunca inventa um número. Ela só escolhe entre consultas fixas, e o sistema confere se cada valor da resposta veio mesmo dos dados. Se a pergunta é ambígua, ela pergunta de volta em vez de chutar.",
+      },
+    ],
+    outcomes: [
+      { title: "Pergunta e resposta com número certo.", body: "Cada valor vem de uma consulta aos dados da empresa e mostra de quando é." },
+      { title: "Quem parou de comprar aparece sozinho.", body: "O ritmo de compra de cada cliente mostra quem saiu do costume, antes de virar cliente perdido." },
+      { title: "Os dados chegam do ERP.", body: "Por planilha CSV ou pela API do sistema da empresa, sempre para uma cópia própria, sem pesar no ERP." },
+      { title: "Sincronização que não duplica.", body: "Rodar de novo não repete pedidos, e cada execução fica registrada como concluída ou com falha." },
+      { title: "Cada empresa vê só os seus dados.", body: "Várias empresas no mesmo sistema, separadas no próprio banco de dados." },
+      { title: "Três idiomas, tema claro e escuro.", body: "Português, inglês e espanhol em todas as telas." },
+    ],
+    techDetails:
+      "Monólito modular em .NET 10 (C#), com um módulo por área: identidade, empresas, vendas, integração, insights, copiloto, mensagens e rotas. PostgreSQL com Row-Level Security por empresa, valores em centavos e datas em UTC. Na minha área, o módulo de integração: interface IErpConnector, sincronização incremental e idempotente, conector CSV com mapeamento de colunas e relatório de erros que não expõe os dados do arquivo (CsvHelper), e histórico de sincronizações com o frescor de cada tipo de dado. Contrato primeiro com OpenAPI e erros em Problem Details. Portal em Next.js e TypeScript, app em Expo e React Native, design system próprio em pacote compartilhado, IA com a API do Claude e mensagens pela API do WhatsApp. Decisões registradas em ADRs, testes automáticos e avaliações do copiloto.",
+    episodes: [
+      { title: "O mês num relance", line: "Faturamento, meta, positivação e quem está inativo.", image: ritmoImg("01-visao-geral.jpg"), featured: true },
+      { title: "Pergunte ao Ritmo", line: "Uma pergunta em português, a resposta com os números e de quando eles são.", image: ritmoImg("02-pergunte-ao-ritmo.jpg"), featured: true },
+      { title: "A carteira", line: "Cada cliente com o ritmo das últimas 12 semanas e quem está em atraso.", image: ritmoImg("03-clientes.jpg"), featured: true },
+      { title: "Os avisos", line: "Queda de compra, boleto vencido e o resumo do dia, logo cedo.", image: ritmoImg("04-alertas.jpg"), featured: true },
+      { title: "A sincronização", line: "Quando os dados do ERP chegaram, quantos pedidos e se deu certo.", image: ritmoImg("05-sincronizacao.jpg"), featured: true },
+      { title: "De noite", line: "O mesmo portal no tema escuro.", image: ritmoImg("06-visao-geral-escuro.jpg") },
+    ],
+    nextChapters: ["Ligar a integração ao banco e à API", "Importação de Excel e envio de arquivo pelo portal", "Respostas pelo WhatsApp", "Piloto com uma empresa de verdade"],
+    // Repositório privado da Marco Zero Labs: só a página pública do produto.
+    links: [{ label: "Página do produto", href: "https://marco-zero-labs.github.io/ritmo-site/" }],
+  },
+  {
     slug: "portfolio",
     title: "Este portfólio",
     shortTitle: "Este portfólio",
@@ -297,7 +346,7 @@ export const projects: Project[] = [
 ];
 
 /** Projetos que se revezam no carrossel do topo, na ordem em que aparecem. */
-export const featuredProjectSlugs = ["acpb", "compoze", "patotinha", "send"];
+export const featuredProjectSlugs = ["acpb", "compoze", "ritmo", "patotinha", "send"];
 
 export const seasons: Season[] = [
   {
@@ -362,7 +411,7 @@ export const workflow = [
 
 export const stack: StackGroup[] = [
   { title: "O que você vê na tela", items: ["React", "TypeScript", "JavaScript", "Tailwind CSS", "Angular"] },
-  { title: "O que roda por trás", items: ["Python", "FastAPI", "Node.js", "Express", "PHP"] },
+  { title: "O que roda por trás", items: ["Python", "FastAPI", "Node.js", "Express", "C# e .NET", "PHP"] },
   { title: "Onde os dados moram", items: ["PostgreSQL", "MySQL / MariaDB"] },
   { title: "Como eu garanto que funciona", items: ["Pytest", "Vitest", "Testing Library", "GitHub Actions"] },
   { title: "Onde o sistema vive", items: ["Docker", "Render", "Neon", "Supabase", "Sentry"] },
