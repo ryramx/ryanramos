@@ -16,6 +16,7 @@ import type {
 const acpbImg = (file: string) => `/projetos/acpb/${file}`;
 const compozeImg = (file: string) => `/projetos/compoze/${file}`;
 const sendImg = (file: string) => `/projetos/send/prints/${file}`;
+const ritmoImg = (file: string) => `/projetos/ritmo/${file}`;
 
 /** APK mais recente do Compoze, publicado pelo CI nos Releases do GitHub. */
 const compozeApk = "https://github.com/ryramx/Compoze_app/releases/latest/download/Compoze.apk";
@@ -269,6 +270,62 @@ export const projects: Project[] = [
     links: [],
   },
   {
+    slug: "ritmo",
+    title: "Ritmo, o copiloto do vendedor de rua",
+    shortTitle: "Ritmo",
+    status: "em-desenvolvimento",
+    badge: "Em desenvolvimento · Produto em equipe",
+    tagline:
+      "Um app de celular para quem vende na rua: o vendedor abre o Ritmo entre uma visita e outra, vê quanto já vendeu no mês, quem saiu do ritmo de compra e pergunta sobre a carteira como perguntaria a um analista. Os números vêm dos dados da própria empresa, e o gestor acompanha tudo pelo portal web.",
+    meta: ["2026", "Em equipe de três desenvolvedores", "App Android e iOS, portal web e WhatsApp"],
+    cover: ritmoImg("00-app-capa.jpg"),
+    heroImages: [ritmoImg("00-app-capa.jpg"), ritmoImg("02-app-conversa.jpg"), ritmoImg("03-app-cliente.jpg"), ritmoImg("06-visao-geral-escuro.jpg")],
+    imageNote: "As telas mostram a demonstração do app e do portal, com clientes, vendedores e valores fictícios.",
+    story: [
+      {
+        title: "A ideia",
+        body: "Quem vende na rua passa o dia entre um cliente e outro, com o celular na mão e sem tempo de abrir relatório. O Ritmo junta os pedidos que já estão no sistema da empresa (o ERP) e mostra no app o que importa para a próxima visita: quanto o cliente comprou, há quantos dias está sem comprar, se tem boleto em aberto e quanto falta para a meta.",
+      },
+      {
+        title: "A minha parte",
+        body: "Somos três desenvolvedores, cada um dono de uma área. Eu cuido dos dados e das integrações: é o meu código que traz os pedidos do ERP para dentro do Ritmo, por planilha CSV ou pela API do sistema da empresa, confere linha por linha e registra cada sincronização. Também combinei com a área de inteligência artificial quais consultas a IA pode chamar, e cuido da rota e do app.",
+      },
+      {
+        title: "A regra de ouro",
+        body: "A IA nunca inventa um número. Ela só escolhe entre consultas fixas, e o sistema confere se cada valor da resposta veio mesmo dos dados. Se a pergunta é ambígua, ela pergunta de volta em vez de chutar.",
+      },
+    ],
+    outcomes: [
+      { title: "O dia do vendedor numa tela.", body: "Venda do mês contra a meta, positivação, ticket médio e os 20 maiores clientes, com o período escolhido num toque." },
+      { title: "Pergunta e resposta com número certo.", body: "Perguntas prontas ou digitadas, e cada valor da resposta mostra de onde veio e de quando é." },
+      { title: "A ficha antes da visita.", body: "Ritmo de compra, boleto em aberto e botões para ligar, chamar no WhatsApp, abrir o mapa e registrar a visita." },
+      { title: "Quem parou de comprar aparece sozinho.", body: "O ritmo de compra de cada cliente mostra quem saiu do costume, antes de virar cliente perdido." },
+      { title: "Os dados chegam do ERP.", body: "Por planilha CSV ou pela API do sistema da empresa, sempre para uma cópia própria, sem pesar no ERP." },
+      { title: "Sincronização que não duplica.", body: "Rodar de novo não repete pedidos, e cada execução fica registrada como concluída ou com falha." },
+      { title: "Cada empresa vê só os seus dados.", body: "Várias empresas no mesmo sistema, separadas no próprio banco de dados." },
+      { title: "Feito para o celular de cada um.", body: "Navegação nativa no Android e no iPhone, três idiomas, tema claro e escuro e botões do tamanho do dedo." },
+    ],
+    techDetails:
+      "Monólito modular em .NET 10 (C#), com um módulo por área: identidade, empresas, vendas, integração, insights, copiloto, mensagens e rotas. PostgreSQL com Row-Level Security por empresa, valores em centavos e datas em UTC. Na minha área, o módulo de integração: interface IErpConnector, sincronização incremental e idempotente, conector CSV com mapeamento de colunas e relatório de erros que não expõe os dados do arquivo (CsvHelper), e histórico de sincronizações com o frescor de cada tipo de dado. Contrato primeiro com OpenAPI e erros em Problem Details. App em Expo (SDK 58) e React Native com TypeScript e Expo Router: abas e controles nativos de cada sistema, atualização pelo EAS Update, estados de carregando, vazio, erro e sem conexão em todas as telas, e as métricas (positivação, ticket médio, ritmo de compra) em funções puras com testes. Portal em Next.js e TypeScript, design system próprio em pacote compartilhado, IA com a API do Claude e mensagens pela API do WhatsApp. Decisões registradas em ADRs, testes automáticos e avaliações do copiloto.",
+    episodes: [
+      { title: "Bom dia, Ana", line: "A venda do mês contra a meta, positivação, ticket médio e os maiores clientes.", image: ritmoImg("01-app-hoje.jpg"), featured: true },
+      { title: "Pergunte ao Ritmo", line: "Os clientes que mais caíram, com a seta, o sinal e a fonte de cada número.", image: ritmoImg("02-app-conversa.jpg"), featured: true },
+      { title: "Antes de bater na porta", line: "Há quantos dias o cliente não compra, contra o costume dele, e o boleto em aberto.", image: ritmoImg("03-app-cliente.jpg"), featured: true },
+      { title: "A carteira", line: "Quem está em risco, quem está em dia e quem nunca comprou.", image: ritmoImg("04-app-carteira.jpg"), featured: true },
+      { title: "Perguntas prontas", line: "Um toque para saber quem parou de comprar ou montar uma sugestão de pedido.", image: ritmoImg("05-app-perguntas-prontas.jpg") },
+      { title: "Os avisos", line: "O resumo das 7h, cliente em risco, estoque baixo e pedido confirmado.", image: ritmoImg("06-app-avisos.jpg"), featured: true },
+      { title: "O portal do gestor", line: "Faturamento, meta, positivação e a equipe de vendas no computador.", image: ritmoImg("01-visao-geral.jpg"), featured: true },
+      { title: "Pergunte no portal", line: "A mesma pergunta, a resposta com os números e de quando eles são.", image: ritmoImg("02-pergunte-ao-ritmo.jpg") },
+      { title: "A carteira no portal", line: "Cada cliente com o ritmo das últimas 12 semanas e quem está em atraso.", image: ritmoImg("03-clientes.jpg") },
+      { title: "Alertas do gestor", line: "Queda de compra, boleto vencido e o resumo do dia, logo cedo.", image: ritmoImg("04-alertas.jpg") },
+      { title: "A sincronização", line: "Quando os dados do ERP chegaram, quantos pedidos e se deu certo.", image: ritmoImg("05-sincronizacao.jpg"), featured: true },
+      { title: "De noite", line: "O portal no tema escuro.", image: ritmoImg("06-visao-geral-escuro.jpg") },
+    ],
+    nextChapters: ["Publicar o app na Google Play e na App Store", "Ligar a integração ao banco e à API", "Importação de Excel e envio de arquivo pelo portal", "Respostas pelo WhatsApp", "Piloto com uma empresa de verdade"],
+    // Repositório privado da Marco Zero Labs: só a página pública do produto.
+    links: [{ label: "Página do produto", href: "https://marco-zero-labs.github.io/ritmo-site/" }],
+  },
+  {
     slug: "portfolio",
     title: "Este portfólio",
     shortTitle: "Este portfólio",
@@ -297,7 +354,7 @@ export const projects: Project[] = [
 ];
 
 /** Projetos que se revezam no carrossel do topo, na ordem em que aparecem. */
-export const featuredProjectSlugs = ["acpb", "compoze", "patotinha", "send"];
+export const featuredProjectSlugs = ["acpb", "compoze", "ritmo", "patotinha", "send"];
 
 export const seasons: Season[] = [
   {
@@ -362,7 +419,7 @@ export const workflow = [
 
 export const stack: StackGroup[] = [
   { title: "O que você vê na tela", items: ["React", "TypeScript", "JavaScript", "Tailwind CSS", "Angular"] },
-  { title: "O que roda por trás", items: ["Python", "FastAPI", "Node.js", "Express", "PHP"] },
+  { title: "O que roda por trás", items: ["Python", "FastAPI", "Node.js", "Express", "C# e .NET", "PHP"] },
   { title: "Onde os dados moram", items: ["PostgreSQL", "MySQL / MariaDB"] },
   { title: "Como eu garanto que funciona", items: ["Pytest", "Vitest", "Testing Library", "GitHub Actions"] },
   { title: "Onde o sistema vive", items: ["Docker", "Render", "Neon", "Supabase", "Sentry"] },
