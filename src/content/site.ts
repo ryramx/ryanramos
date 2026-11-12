@@ -28,6 +28,11 @@ export const profile = {
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   description:
     "Portfólio de Ryan Ramos, desenvolvedor full stack em Pernambuco. Sistemas web sob medida, do primeiro bate-papo até a publicação.",
+  /** Topo da página inicial. */
+  headline: "Da administração ao código, um sistema de cada vez.",
+  intro:
+    "Sou desenvolvedor full stack em Pernambuco e estou na reta final de Análise e Desenvolvimento de Sistemas. Gosto de entender como as pessoas trabalham de verdade e transformar isso num sistema simples de usar.",
+  availability: "Aberto a vagas e a projetos freelancer",
   about: {
     title: "Oi, eu sou o Ryan.",
     paragraphs: [
@@ -43,8 +48,8 @@ export const profile = {
 
 export const nav = [
   { label: "Início", href: "/" },
+  { label: "Trajetória", href: "/#trajetoria" },
   { label: "Projetos", href: "/#projetos" },
-  { label: "Trajetória", href: "/trajetoria" },
   { label: "Serviços", href: "/#servicos" },
   { label: "Contato", href: "/contato" },
 ];
@@ -52,6 +57,7 @@ export const nav = [
 export const projects: Project[] = [
   {
     slug: "acpb",
+    summary: "Gestão de uma associação social, do primeiro bate-papo até o ar. Usado todo dia.",
     title: "Sistema de Gestão da Associação Cristã Pau-Brasil",
     shortTitle: "Sistema ACPB",
     status: "no-ar",
@@ -137,6 +143,7 @@ export const projects: Project[] = [
   },
   {
     slug: "compoze",
+    summary: "Caderno colaborativo de quem compõe, que funciona até sem internet.",
     title: "Compoze, o caderno de quem compõe",
     shortTitle: "Compoze",
     status: "em-desenvolvimento",
@@ -195,6 +202,7 @@ export const projects: Project[] = [
   },
   {
     slug: "patotinha",
+    summary: "Balcão de pedidos de uma lanchonete, do pedido ao resumo das vendas.",
     title: "Sistema de Pedidos da Patotinha da Vovó",
     shortTitle: "Patotinha da Vovó",
     status: "em-desenvolvimento",
@@ -215,6 +223,7 @@ export const projects: Project[] = [
   },
   {
     slug: "send",
+    summary: "Contratos, mensalidades e cobrança de uma software house.",
     title: "Sistema de Gestão de uma empresa de software",
     shortTitle: "Gestão de software house",
     status: "em-desenvolvimento",
@@ -271,6 +280,7 @@ export const projects: Project[] = [
   },
   {
     slug: "ritmo",
+    summary: "App de celular para quem vende na rua, feito em equipe de três.",
     title: "Ritmo, o copiloto do vendedor de rua",
     shortTitle: "Ritmo",
     status: "em-desenvolvimento",
@@ -331,7 +341,7 @@ export const projects: Project[] = [
     shortTitle: "Este portfólio",
     status: "em-desenvolvimento",
     badge: "Em desenvolvimento",
-    tagline: "Construído do zero, aberto no GitHub. Você está assistindo agora.",
+    tagline: "Construído do zero, aberto no GitHub. Você está nele agora.",
     meta: ["2026", "Next.js", "Framer Motion"],
     cover: acpbImg("02-celular.jpg"),
     links: [{ label: "Código no GitHub", href: "https://github.com/ryramx/ryanramos" }],
@@ -353,28 +363,43 @@ export const projects: Project[] = [
   },
 ];
 
-/** Projetos que se revezam no carrossel do topo, na ordem em que aparecem. */
-export const featuredProjectSlugs = ["acpb", "compoze", "ritmo", "patotinha", "send"];
+/**
+ * Projetos que aparecem na linha do tempo da página inicial, na ordem em que aparecem.
+ * O primeiro ganha o cartão grande.
+ */
+export const featuredProjectSlugs = ["acpb", "ritmo", "send", "compoze", "patotinha"];
+
+/** Etapa da trajetória onde os projetos aparecem na linha do tempo. */
+export const projectsSeasonCode = "T3";
 
 export const seasons: Season[] = [
   {
     code: "T1",
+    label: "Formação técnica",
+    place: "Grau Técnico",
     title: "O começo pela gestão",
     body: "Fiz o técnico em Administração no Grau Técnico. Foi ali que aprendi como uma organização funciona por dentro, e isso me ajuda até hoje a conversar com quem vai usar o sistema.",
   },
   {
     code: "T2",
+    label: "Faculdade",
+    place: "Estácio · reta final",
     title: "Virando desenvolvedor",
     body: "Entrei em Análise e Desenvolvimento de Sistemas na Estácio, hoje na reta final. Comecei pelo básico e fui montando a base de front-end, back-end e banco de dados.",
   },
   {
     code: "T3",
+    label: "2026 – hoje",
+    place: "Agora",
+    current: true,
     title: "O primeiro sistema de verdade",
     period: "2026 – hoje",
     body: "Assumi o sistema da Associação Cristã Pau-Brasil de ponta a ponta. Foi a temporada em que mais aprendi: ouvir o cliente, decidir, testar e manter algo que as pessoas usam todo dia.",
   },
   {
     code: "T4",
+    label: "Próximo",
+    place: "Estudando",
     title: "Próximo destino: nuvem e IA",
     body: "Estou fazendo a Formação AWS Cloud Foundations e o Java AI Copilot (DIO + CI&T), e estudei fundamentos de IA moderna e engenharia de prompts.",
   },

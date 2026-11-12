@@ -1,29 +1,28 @@
 import { stack } from "@/content/site";
-import { Reveal } from "./reveal";
 
-/** "Bastidores": ferramentas agrupadas com uma legenda simples. */
+/** As ferramentas, agrupadas numa lista compacta. */
 export function Stack() {
   return (
-    <section className="px-4 py-10 sm:px-10" aria-labelledby="bastidores">
-      <h2 id="bastidores" className="text-xl font-semibold tracking-tight sm:text-2xl">
-        Bastidores
-      </h2>
-      <p className="mt-1 text-sm text-muted">As ferramentas que uso para construir.</p>
-      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {stack.map((group, i) => (
-          <Reveal key={group.title} delay={(i % 3) * 0.08}>
-            <div className="h-full rounded-md border border-white/5 bg-surface p-5">
-              <h3 className="text-sm font-semibold text-foreground/90">{group.title}</h3>
-              <ul className="mt-3 flex flex-wrap gap-2">
+    <section className="border-t border-line px-4 py-16 sm:px-10" aria-labelledby="ferramentas">
+      <div className="mx-auto max-w-5xl">
+        <h2 id="ferramentas" className="font-display text-2xl font-semibold sm:text-3xl">
+          Ferramentas
+        </h2>
+        <p className="mt-2 text-muted">O que eu uso para construir.</p>
+        <dl className="mt-8 grid gap-x-10 gap-y-5 sm:grid-cols-2">
+          {stack.map((group) => (
+            <div key={group.title} className="border-b border-line pb-4">
+              <dt className="text-sm font-semibold">{group.title}</dt>
+              <dd className="mt-2 flex flex-wrap gap-1.5">
                 {group.items.map((item) => (
-                  <li key={item} className="rounded-full bg-white/5 px-3 py-1 text-xs text-foreground/80">
+                  <span key={item} className="rounded-full bg-surface px-2.5 py-0.5 text-xs text-muted ring-1 ring-line">
                     {item}
-                  </li>
+                  </span>
                 ))}
-              </ul>
+              </dd>
             </div>
-          </Reveal>
-        ))}
+          ))}
+        </dl>
       </div>
     </section>
   );

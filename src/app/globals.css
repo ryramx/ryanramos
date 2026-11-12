@@ -1,13 +1,21 @@
 @import "tailwindcss";
 
+/* Visual "linha do tempo": papel cinza-esverdeado, tinta escura e verde de destaque. */
 :root {
-  --background: #0b0b0f;
-  --surface: #16161d;
-  --surface-2: #1f1f29;
-  --foreground: #f4f4f6;
-  --muted: #a1a1b0;
-  --accent: #e5484d;
-  --accent-soft: #e5484d26;
+  --background: #f2f4f3;
+  --surface: #ffffff;
+  --surface-2: #e7ecea;
+  --foreground: #13201a;
+  --muted: #56655e;
+  --line: #d3dcd8;
+  --accent: #157a4c;
+  --accent-soft: #157a4c1f;
+  --ink: #13201a;
+  --on-ink: #eef3f0;
+  --live-bg: #d7f2e4;
+  --live-fg: #12623e;
+  --dev-bg: #fbecd2;
+  --dev-fg: #7d4b00;
 }
 
 @theme inline {
@@ -16,15 +24,23 @@
   --color-surface-2: var(--surface-2);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
+  --color-line: var(--line);
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
+  --color-ink: var(--ink);
+  --color-on-ink: var(--on-ink);
+  --color-live-bg: var(--live-bg);
+  --color-live-fg: var(--live-fg);
+  --color-dev-bg: var(--dev-bg);
+  --color-dev-fg: var(--dev-fg);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-space-grotesk);
 }
 
 html {
   scroll-behavior: smooth;
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
@@ -32,12 +48,10 @@ body {
   color: var(--foreground);
 }
 
-/* Fileiras deslizantes: esconde a barra de rolagem mas mantém o scroll por toque. */
-.no-scrollbar {
-  scrollbar-width: none;
-}
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
+h1,
+h2,
+h3 {
+  text-wrap: balance;
 }
 
 @media (prefers-reduced-motion: reduce) {

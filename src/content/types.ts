@@ -4,7 +4,7 @@ export interface Episode {
   title: string;
   line: string;
   image: string;
-  /** Mostra na fileira da página inicial (os demais ficam só na página de detalhes). */
+  /** Tela de destaque do projeto (hoje todas aparecem na página do projeto). */
   featured?: boolean;
 }
 
@@ -15,6 +15,8 @@ export interface Project {
   status: Status;
   badge: string;
   tagline: string;
+  /** Uma linha para os cartões da página inicial. */
+  summary?: string;
   meta: string[];
   cover: string;
   /** Imagens que alternam no destaque do topo, como um trailer. */
@@ -31,6 +33,12 @@ export interface Project {
 
 export interface Season {
   code: string;
+  /** Rótulo curto na coluna de datas da linha do tempo. */
+  label: string;
+  /** Linha menor embaixo do rótulo (onde ou quando). */
+  place?: string;
+  /** Marca a etapa atual com o ponto aceso. */
+  current?: boolean;
   title: string;
   period?: string;
   body: string;

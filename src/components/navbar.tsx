@@ -19,18 +19,18 @@ export function Navbar() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-        scrolled || open ? "bg-background/95 backdrop-blur" : "bg-gradient-to-b from-black/70 to-transparent"
+        scrolled || open ? "border-b border-line bg-background/90 backdrop-blur" : "bg-transparent"
       }`}
     >
       <nav className="flex h-14 items-center justify-between px-4 sm:h-16 sm:px-10">
-        <Link href="/" className="text-base font-bold tracking-tight text-accent sm:text-lg">
+        <Link href="/" className="font-display text-base font-semibold tracking-tight sm:text-lg">
           {profile.name}
         </Link>
 
         <ul className="hidden items-center gap-6 text-sm md:flex">
           {nav.map((item) => (
             <li key={item.href}>
-              <Link href={item.href} className="text-foreground/80 transition-colors hover:text-foreground">
+              <Link href={item.href} className="text-muted transition-colors hover:text-foreground">
                 {item.label}
               </Link>
             </li>
@@ -40,7 +40,7 @@ export function Navbar() {
         <div className="flex items-center gap-2">
           <Link
             href="/contato"
-            className="rounded-md bg-accent px-3 py-1.5 text-xs font-semibold text-white transition hover:brightness-110 sm:px-4 sm:py-2 sm:text-sm"
+            className="rounded-full bg-ink px-3 py-1.5 text-xs font-semibold text-on-ink transition hover:opacity-90 sm:px-4 sm:py-2 sm:text-sm"
           >
             Vamos conversar
           </Link>
