@@ -8,7 +8,7 @@ import { contact, whatsappLink } from "@/content/site";
 type State = { kind: "idle" } | { kind: "sending" } | { kind: "sent" } | { kind: "error"; message: string };
 
 const field =
-  "w-full rounded-md border border-white/10 bg-surface px-4 py-3 text-foreground placeholder:text-muted/70 focus:border-accent focus:outline-none";
+  "w-full rounded-lg border border-line bg-background px-4 py-3 text-foreground placeholder:text-muted/70 focus:border-accent focus:outline-none";
 
 export function ContactForm() {
   const params = useSearchParams();
@@ -49,7 +49,7 @@ export function ContactForm() {
   }
 
   return (
-    <form ref={formRef} onSubmit={onSubmit} className="space-y-4 rounded-md bg-surface-2/60 p-4 sm:p-6">
+    <form ref={formRef} onSubmit={onSubmit} className="space-y-4 rounded-2xl border border-line bg-surface p-4 sm:p-6">
       <div>
         <label htmlFor="nome" className="mb-1 block text-sm text-muted">Nome</label>
         <input id="nome" name="nome" required maxLength={120} autoComplete="name" className={field} />
@@ -84,14 +84,14 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={state.kind === "sending"}
-        className="w-full rounded-md bg-accent px-6 py-3 font-semibold text-white transition hover:brightness-110 disabled:opacity-60"
+        className="w-full rounded-full bg-ink px-6 py-3 font-semibold text-on-ink transition hover:opacity-90 disabled:opacity-60"
       >
         {state.kind === "sending" ? "Enviando…" : "Enviar por e-mail"}
       </button>
       <button
         type="button"
         onClick={sendByWhatsApp}
-        className="w-full rounded-md border border-emerald-500/40 bg-emerald-500/10 px-6 py-3 font-semibold text-emerald-300 transition hover:bg-emerald-500/20"
+        className="w-full rounded-full border border-accent/40 bg-accent-soft px-6 py-3 font-semibold text-accent transition hover:bg-accent/20"
       >
         Enviar pelo WhatsApp
       </button>
@@ -104,7 +104,7 @@ export function ContactForm() {
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className={state.kind === "sent" ? "text-sm text-emerald-400" : "text-sm text-accent"}
+            className={state.kind === "sent" ? "text-sm text-accent" : "text-sm text-red-700"}
           >
             {state.kind === "sent" ? contact.success : state.message}
           </motion.p>
